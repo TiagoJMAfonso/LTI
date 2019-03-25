@@ -29,6 +29,7 @@
                 size : 50,
                 links: null,
                 aux: 0,
+                sucess:true,
                 fields: {
 
                     'src.device': {

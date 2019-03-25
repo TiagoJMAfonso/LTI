@@ -37,10 +37,14 @@ Vue.use(Toasted);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar', require('./components/navbar.vue').default);
+
+
 const test = Vue.component('test', require('./components/test.vue').default);
 const links = Vue.component('links', require('./components/Links.vue').default);
 const hosts = Vue.component('hosts', require('./components/Hosts.vue').default);
 const topology = Vue.component('topology', require('./components/Topology.vue').default);
+const welcome = Vue.component('welcome', require('./components/welcome.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -52,6 +56,7 @@ const routes = [
     { path: '/links', component: links, name: 'links' },
     { path: '/hosts', component: hosts, name: 'hosts' },
     { path: '/topology', component: topology, name: 'topology' },
+    { path: '/', component: welcome, name: 'welcome' },
     //{ path: '/bar', component: Bar }
 ]
 
@@ -64,9 +69,9 @@ const app = new Vue({
     router,
     data : function () {
         return{
-            ip : '192.168.56.102',
-            user : 'onos',
-            password:'rocks',
+            ip : '',
+            user : '',
+            password:'',
         }
 
     }

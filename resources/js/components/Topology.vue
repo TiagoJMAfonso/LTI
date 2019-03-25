@@ -1,6 +1,16 @@
 <template>
     <div>
-        <div>
+        <b-container>
+            <b-row>
+                <b-col cols="4">
+                </b-col>
+                <b-col cols="4">
+                    <HashLoader class="mx-auto" color="#000000" :size="size" sizeUnit="px"  v-if="topo==null"></HashLoader>
+                </b-col>
+                <b-col cols="4">
+                </b-col>
+            </b-row>
+        <div v-if="topo!=null">
             <b-card no-body class="overflow-hidden" style="max-width: 540px;">
                 <b-row no-gutters>
                     <b-col md="6">
@@ -30,6 +40,7 @@
                 </b-row>
             </b-card>
         </div>
+        </b-container>
     </div>
 </template>
 <script>
@@ -53,6 +64,7 @@
                     .catch(error => {
                         console.log(error);
                         console.log(error.response.data.message);
+                        this.topo = '';
                     });
             },
         },

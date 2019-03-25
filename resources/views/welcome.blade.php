@@ -19,7 +19,8 @@ header("Access-Control-Allow-Origin: *");
 
                 <div id="app">
 
-                  <navbar></navbar>
+                    <navbar></navbar>
+
 
                 </div>
                 <script src="{{ asset('js/app.js') }}"></script>
