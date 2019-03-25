@@ -9,6 +9,27 @@ use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
 
 class OnosController extends Controller
 {
+    // $client = '';  
+    // $auth = '';
+
+    // public function login(Request $request)
+    // {
+        
+    //     $client = new Client([
+    //     // Base URI is used with relative requests
+    //     'base_uri' => '$request->uri',
+    //     // You can set any number of default request options.
+    //     'timeout' => 2.0,
+    //     ]);  
+    //     $auth = ['auth' =>
+    //             [
+    //                 '$request->username',
+    //                 '$request->password'
+    //             ]
+    //         ];
+        
+    // }
+
     public function devices(Request $request)
     {
         $client = new Client([
