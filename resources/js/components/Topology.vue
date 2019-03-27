@@ -65,8 +65,11 @@
         methods: {
 
             showTopology() {
+                let user = { ip: this.$store.state.ip,
+                        username: this.$store.state.username,
+                        password: this.$store.state.password};
                 axios
-                    .get("api/topology")
+                    .post("api/topology", user)
                     .then(response => {
                         this.topo = (response.data);
                         console.log(this.topo);

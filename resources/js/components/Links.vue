@@ -65,8 +65,11 @@
         methods: {
 
             showLinks() {
+                let user = { ip: this.$store.state.ip,
+                        username: this.$store.state.username,
+                        password: this.$store.state.password};
                 axios
-                    .get("api/links")
+                    .post("api/links", user)
                     .then(response => {
 
                         this.links = (response.data.links);

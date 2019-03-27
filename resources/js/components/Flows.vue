@@ -73,8 +73,11 @@
         methods: {
 
             showIntents() {
+                let user = { ip: this.$store.state.ip,
+                        username: this.$store.state.username,
+                        password: this.$store.state.password};
                 axios
-                    .get("api/flows")
+                    .post("api/flows",user)
                     .then(response => {
 
                         this.flows = (response.data.flows);

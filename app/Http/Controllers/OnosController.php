@@ -32,17 +32,26 @@ class OnosController extends Controller
 
     public function devices(Request $request)
     {
+        //dd($request->ip, $request->username, $request->password);
+        /*$data = $request->validate([
+            'table_number' => 'required|min:1|numeric|unique:restaurant_tables,table_number'
+        ]);*/
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://192.168.56.102:8181/onos/v1/',
+            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
         $response = $client->request('GET', 'devices',
             ['auth' =>
                 [
-                    'onos',
-                    'rocks'
+                    $data['username'],
+                    $data['password']
                 ]
             ]
         );
@@ -52,17 +61,22 @@ class OnosController extends Controller
 
     public function getLinks(Request $request)
     {
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://192.168.56.102:8181/onos/v1/',
+            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
         $response = $client->request('GET', 'links',
             ['auth' =>
                 [
-                    'onos',
-                    'rocks'
+                    $data['username'],
+                    $data['password']
                 ]
             ]
         );
@@ -72,17 +86,22 @@ class OnosController extends Controller
 
     public function getHosts(Request $request)
     {
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://192.168.56.102:8181/onos/v1/',
+            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
         $response = $client->request('GET', 'hosts',
             ['auth' =>
                 [
-                    'onos',
-                    'rocks'
+                    $data['username'],
+                    $data['password']
                 ]
             ]
         );
@@ -91,17 +110,22 @@ class OnosController extends Controller
     }
     public function getTopology(Request $request)
     {
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://192.168.56.102:8181/onos/v1/',
+            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
         $response = $client->request('GET', 'system',
             ['auth' =>
                 [
-                    'onos',
-                    'rocks'
+                    $data['username'],
+                    $data['password']
                 ]
             ]
         );
@@ -110,17 +134,22 @@ class OnosController extends Controller
     }
     public function getIntents(Request $request)
     {
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://192.168.56.102:8181/onos/v1/',
+            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
         $response = $client->request('GET', 'intents',
             ['auth' =>
                 [
-                    'onos',
-                    'rocks'
+                    $data['username'],
+                    $data['password']
                 ]
             ]
         );
@@ -131,17 +160,22 @@ class OnosController extends Controller
 
     public function getFlows(Request $request)
     {
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://192.168.56.102:8181/onos/v1/',
+            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
         $response = $client->request('GET', 'flows',
             ['auth' =>
                 [
-                    'onos',
-                    'rocks'
+                    $data['username'],
+                    $data['password']
                 ]
             ]
         );

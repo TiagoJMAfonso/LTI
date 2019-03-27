@@ -64,8 +64,11 @@
         methods: {
 
             showHosts() {
+                let user = { ip: this.$store.state.ip,
+                        username: this.$store.state.username,
+                        password: this.$store.state.password};
                 axios
-                    .get("api/hosts")
+                    .post("api/hosts", user)
                     .then(response => {
                         this.hosts = (response.data.hosts);
                         console.log(this.hosts);

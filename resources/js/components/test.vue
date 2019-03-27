@@ -70,8 +70,12 @@
         methods: {
 
             showDevices() {
+                let user = { ip: this.$store.state.ip,
+                        username: this.$store.state.username,
+                        password: this.$store.state.password};
+                console.log(user);
                 axios
-                    .get("api/devices")
+                    .post("api/devices", user)
                     .then(response => {
                          this.devices = (response.data.devices);
                         console.log(this.devices.length);
@@ -80,6 +84,7 @@
                     })
                     .catch(error => {
                         console.log(error);
+                        console.log(user);
                         console.log(error.response.data.message)
                         this.devices = '';
                     });

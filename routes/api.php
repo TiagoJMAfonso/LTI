@@ -18,9 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('devices', 'OnosController@devices');
-Route::get('links', 'OnosController@getLinks');
-Route::get('hosts', 'OnosController@getHosts');
-Route::get('topology', 'OnosController@getTopology');
-Route::get('intents', 'OnosController@getIntents');
-Route::get('flows', 'OnosController@getFlows');
+Route::post('devices', 'OnosController@devices');
+Route::post('links', 'OnosController@getLinks');
+Route::post('hosts', 'OnosController@getHosts');
+Route::post('topology', 'OnosController@getTopology');
+Route::post('intents', 'OnosController@getIntents');
+Route::post('flows', 'OnosController@getFlows');
