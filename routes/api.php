@@ -22,3 +22,5 @@ Route::get('devices', 'OnosController@devices');
 Route::get('links', 'OnosController@getLinks');
 Route::get('hosts', 'OnosController@getHosts');
 Route::get('topology', 'OnosController@getTopology');
+Route::get('intents', 'OnosController@getIntents');
+Route::get('flows', 'OnosController@getFlows');

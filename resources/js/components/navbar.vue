@@ -23,7 +23,10 @@
                         <router-link class="nav-link" to="/topology">Topology</router-link>
                     </b-navbar-nav>
                     <b-navbar-nav>
-                        <router-link class="nav-link" to="/actions">Actions</router-link>
+                        <router-link class="nav-link" to="/flows">Flows</router-link>
+                    </b-navbar-nav>
+                    <b-navbar-nav>
+                        <router-link class="nav-link" to="/intents">Intents</router-link>
                     </b-navbar-nav>
                     <!-- Right aligned nav items -->
 

@@ -108,5 +108,45 @@ class OnosController extends Controller
         $topo = json_decode($response->getBody()->getContents());
         return response()->json($topo);
     }
+    public function getIntents(Request $request)
+    {
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://192.168.56.102:8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request('GET', 'intents',
+            ['auth' =>
+                [
+                    'onos',
+                    'rocks'
+                ]
+            ]
+        );
+        $devices = json_decode($response->getBody()->getContents());
+        return response()->json($devices);
+    }
+
+
+    public function getFlows(Request $request)
+    {
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://192.168.56.102:8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request('GET', 'flows',
+            ['auth' =>
+                [
+                    'onos',
+                    'rocks'
+                ]
+            ]
+        );
+        $flows = json_decode($response->getBody()->getContents());
+        return response()->json($flows);
+    }
 
 }
