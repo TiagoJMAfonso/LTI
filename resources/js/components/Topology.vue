@@ -17,13 +17,13 @@
                         <b-card-img src="imagens/Links.jpg" class="rounded-0 w-75" />
                         <b-card-body title="Links's ">
                             <b-card-text>
-                             <p>olalal</p>
+                                {{topo.links}}
                             </b-card-text>
                         </b-card-body>
                     </b-col>
                     <b-col md="6">
                         <b-card-img src="imagens/switch.png" class="rounded-0  w-75"/>
-                        <b-card-body title="Switch's 11">
+                        <b-card-body title="Switch's">
                             <b-card-text>
                                 {{topo.devices}}
                             </b-card-text>
@@ -32,18 +32,18 @@
                 </b-row>
                 <b-row>
                     <b-col md="6">
-                        <b-card-img src="imagens/switch.png" class="rounded-0"/>
-                        <b-card-body title="Switch's 11">
+                        <b-card-img src="imagens/flows.png" class="rounded-0 w-75"/>
+                        <b-card-body title="Flows">
                             <b-card-text>
-                                {{topo.devices}}
+                                {{topo.flows}}
                             </b-card-text>
                         </b-card-body>
                     </b-col>
                     <b-col md="6">
-                        <b-card-img src="imagens/switch.png" class="rounded-0"/>
-                        <b-card-body title="Switch's 11">
+                        <b-card-img src="imagens/intents.jpg" class="rounded-0 w-75"/>
+                        <b-card-body title="Intents">
                             <b-card-text>
-                                {{topo.devices}}
+                                {{topo.intents}}
                             </b-card-text>
                         </b-card-body>
                     </b-col>

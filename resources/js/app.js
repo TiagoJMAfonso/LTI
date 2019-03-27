@@ -14,6 +14,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router'
 import Toasted from 'vue-toasted'
 import { VueSpinners } from '@saeris/vue-spinners'
+import store from './vuex.js'
 
 
 
@@ -71,12 +72,5 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     router,
-    data : function () {
-        return{
-            ip : '',
-            user : '',
-            password:'',
-        }
-
-    }
+    store
 });

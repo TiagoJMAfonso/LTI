@@ -1,16 +1,29 @@
 <template>
     <div>
+
         <b-container>
             <b-row>
                 <b-col cols="4">
                 </b-col>
                 <b-col cols="4">
-                    <HashLoader class="mx-auto" color="#000000" :size="size" sizeUnit="px"  v-if="intents==null"></HashLoader>
+                    <HashLoader class="mx-auto" color="#000000" :size="size" sizeUnit="px"
+                                v-if="intents==null"></HashLoader>
                 </b-col>
                 <b-col cols="4">
                 </b-col>
             </b-row>
+            <div v-if="intents!=null">
+                <b-form inline>
+                    <label class="sr-only">Name</label>
+                    <b-input class="mb-2 mr-sm-2 mb-sm-0"  placeholder="Key"/>
 
+                    <label class="sr-only">Username</label>
+                    <b-input class="mb-2 mr-sm-2 mb-sm-0"  placeholder="Application ID"/>
+
+
+                    <b-button variant="danger" @click="">Delete</b-button>
+                </b-form>
+            </div>
 
             <b-row>
 
@@ -26,10 +39,10 @@
 
         data() {
             return {
-                size : 50,
+                size: 50,
                 intents: null,
                 aux: 0,
-                sucess:true,
+                sucess: true,
                 fields: {
 
                     appId: {
@@ -64,7 +77,6 @@
                         label: 'Actions',
                         sortable: false
                     },
-
 
 
                 },

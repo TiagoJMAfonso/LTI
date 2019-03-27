@@ -97,7 +97,7 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('GET', 'topology',
+        $response = $client->request('GET', 'system',
             ['auth' =>
                 [
                     'onos',
