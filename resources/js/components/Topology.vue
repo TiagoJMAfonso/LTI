@@ -72,8 +72,6 @@
                     .post("api/topology", user)
                     .then(response => {
                         this.topo = (response.data);
-                        console.log(this.topo);
-
                     })
                     .catch(error => {
                         console.log(error);

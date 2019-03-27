@@ -93,12 +93,8 @@
                 axios
                     .post("api/intents", user)
                     .then(response => {
-
                         this.intents = (response.data.intents);
-                        console.log(this.intents);
                         this.aux = this.intents.length;
-                        console.log(this.aux);
-
                     })
                     .catch(error => {
                         console.log(error);

@@ -73,14 +73,10 @@
                 let user = { ip: this.$store.state.ip,
                         username: this.$store.state.username,
                         password: this.$store.state.password};
-                console.log(user);
                 axios
                     .post("api/devices", user)
                     .then(response => {
                          this.devices = (response.data.devices);
-                        console.log(this.devices.length);
-
-
                     })
                     .catch(error => {
                         console.log(error);

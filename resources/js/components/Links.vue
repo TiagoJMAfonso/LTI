@@ -71,12 +71,8 @@
                 axios
                     .post("api/links", user)
                     .then(response => {
-
                         this.links = (response.data.links);
-                        console.log(this.links);
                         this.aux = this.links.length;
-                        console.log(this.aux);
-
                     })
                     .catch(error => {
                         console.log(error);

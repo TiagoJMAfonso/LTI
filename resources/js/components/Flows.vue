@@ -81,10 +81,7 @@
                     .then(response => {
 
                         this.flows = (response.data.flows);
-                        console.log(this.flows);
                         this.aux = this.flows.length;
-                        console.log(this.aux);
-
                     })
                     .catch(error => {
                         console.log(error);

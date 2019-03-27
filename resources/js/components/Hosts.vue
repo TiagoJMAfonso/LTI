@@ -71,8 +71,6 @@
                     .post("api/hosts", user)
                     .then(response => {
                         this.hosts = (response.data.hosts);
-                        console.log(this.hosts);
-
                     })
                     .catch(error => {
                         console.log(error);
