@@ -34,7 +34,7 @@
                     this.$toasted.error("Please insert IP, Username and Password", {duration: 3000, position: 'top-center', theme: 'bubble'});
                     return;
                 }
-                this.$toasted.success("You logged in successfully", {duration: 3000, position: 'top-center', theme: 'bubble'});
+                this.$toasted.success("Credentials for login on controller updated", {duration: 3000, position: 'top-center', theme: 'bubble'});
 
             }
 
