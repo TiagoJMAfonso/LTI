@@ -26,15 +26,17 @@
         },
         methods: {
             setLogin(){
-                this.$store.state.ip = this.ip
-                this.$store.state.username = this.username
-                this.$store.state.password = this.password
-                if (this.$store.state.ip == '' || this.$store.state.username == '' || this.$store.state.password == '') {
+                let user = { 
+                    ip: this.ip,
+                    username: this.username,
+                    password: this.password
+                };
+                if (user.ip == '' || user.username == '' || user.password == '') {
                     this.$toasted.error("Please insert IP, Username and Password", {duration: 3000, position: 'top-center', theme: 'bubble'});
                     return;
                 }
                 this.$toasted.success("Credentials for login on controller updated", {duration: 3000, position: 'top-center', theme: 'bubble'});
-
+                this.$store.commit("setUser", user);
             }
 
         },

@@ -28,6 +28,7 @@ const topology = Vue.component('topology', require('./components/Topology.vue').
 const welcome = Vue.component('welcome', require('./components/welcome.vue').default);
 const intents = Vue.component('intents', require('./components/Intents.vue').default);
 const flows = Vue.component('flows', require('./components/Flows.vue').default);
+const createFlow = Vue.component('createFlow', require('./components/createFlow.vue').default);
 
 
 const routes = [
@@ -37,8 +38,8 @@ const routes = [
     { path: '/topology', component: topology, name: 'topology' },
     { path: '/intents', component: intents, name: 'intents' },
     { path: '/flows', component: flows, name: 'flows' },
+    { path: '/flows/create', component: createFlow, name: 'createFlow' },
     { path: '/', component: welcome, name: 'welcome' },
-    //{ path: '/bar', component: Bar }
 ]
 
 

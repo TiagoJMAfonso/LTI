@@ -76,7 +76,9 @@
                 axios
                     .post("api/devices", user)
                     .then(response => {
-                         this.devices = (response.data.devices);
+                        this.devices = (response.data.devices);
+                        this.$store.commit("setDevices", this.devices);
+
                     })
                     .catch(error => {
                         console.log(error);
