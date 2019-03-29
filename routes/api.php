@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('devices', 'OnosController@devices');
+Route::post('devices/id', 'OnosController@getDevicesById');
 Route::post('links', 'OnosController@getLinks');
 Route::post('hosts', 'OnosController@getHosts');
 Route::post('topology', 'OnosController@getTopology');

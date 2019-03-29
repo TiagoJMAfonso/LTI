@@ -1,7 +1,8 @@
 <template>
     <div>
     <div>
-        <b-input class="mb-2 mr-sm-2 mb-sm-0" v-model="ip" placeholder="IP" />
+        <b-input  class="mb-2 mr-sm-2 mb-sm-0"  v-model="ip" placeholder="IP" />
+
     </div>
     <div>
         <b-input class="mb-2 mr-sm-2 mb-sm-0"  v-model="username" placeholder="Username" />
