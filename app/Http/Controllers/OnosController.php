@@ -59,6 +59,36 @@ class OnosController extends Controller
         return response()->json($devices);
     }
 
+
+
+    public function getDevicesById(Request $request)
+    {
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+            'deviceId' => 'required'
+        ]);
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+
+        $response = $client->request('GET', 'devices/'.$data['deviceId'].'/ports',
+            ['auth' =>
+                [
+                    $data['username'],
+                    $data['password']
+                ]
+            ]
+        );
+        $devices = json_decode($response->getBody()->getContents());
+        //dd($devices);
+        return response()->json($devices);
+    }
+
     public function getLinks(Request $request)
     {
         $data = $request->validate([
