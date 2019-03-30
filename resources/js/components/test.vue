@@ -78,8 +78,8 @@
                 axios
                     .post("api/devices", user)
                     .then(response => {
-                        this.$store.commit("setDevices", this.devices);
                         this.devices = (response.data.devices);
+                        this.$store.commit("setDevices", this.devices);
                     })
                     .catch(error => {
                         console.log(error);
