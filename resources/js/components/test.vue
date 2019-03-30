@@ -11,18 +11,8 @@
                 </b-col>
             </b-row>
 
-            <b-form inline v-if="devices!=null">
-                <label class="sr-only">Name</label>
-                <b-input class="mb-2 mr-sm-2 mb-sm-0"  v-model="deviceId" placeholder="Id"/>
-
-                <b-button variant="info" @click="getDeviceById">Search</b-button>
-            </b-form>
         <b-row>
             <b-table striped hover :items="devices" :fields="fields"  v-if="devices!=null">
-                <template slot="actions" slot-scope="row">
-
-                    <b-button v-on:click.prevent="getDeviceById(row.item.id)">Delete</b-button>
-                </template>
             </b-table>
 
             <h4 class="mx-auto" v-if="devices==''"> No devices conneted</h4>
@@ -70,10 +60,6 @@
                     },
                     mfr: {
                         label: 'Vendor',
-                        sortable: false
-                    },
-                    actions: {
-                        label: 'Action',
                         sortable: false
                     },
                 },

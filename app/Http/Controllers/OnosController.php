@@ -14,7 +14,7 @@ class OnosController extends Controller
 
     // public function login(Request $request)
     // {
-        
+
     //     $client = new Client([
     //     // Base URI is used with relative requests
     //     'base_uri' => '$request->uri',
@@ -27,7 +27,7 @@ class OnosController extends Controller
     //                 '$request->password'
     //             ]
     //         ];
-        
+
     // }
 
     public function devices(Request $request)
@@ -43,7 +43,7 @@ class OnosController extends Controller
         ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
@@ -60,7 +60,6 @@ class OnosController extends Controller
     }
 
 
-
     public function getDevicesById(Request $request)
     {
         $data = $request->validate([
@@ -71,12 +70,12 @@ class OnosController extends Controller
         ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
 
-        $response = $client->request('GET', 'devices/'.$data['deviceId'].'/ports',
+        $response = $client->request('GET', 'devices/' . $data['deviceId'] . '/ports',
             ['auth' =>
                 [
                     $data['username'],
@@ -98,7 +97,7 @@ class OnosController extends Controller
         ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
@@ -123,7 +122,7 @@ class OnosController extends Controller
         ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
@@ -138,6 +137,7 @@ class OnosController extends Controller
         $hosts = json_decode($response->getBody()->getContents());
         return response()->json($hosts);
     }
+
     public function getTopology(Request $request)
     {
         $data = $request->validate([
@@ -147,7 +147,7 @@ class OnosController extends Controller
         ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
@@ -162,6 +162,7 @@ class OnosController extends Controller
         $topo = json_decode($response->getBody()->getContents());
         return response()->json($topo);
     }
+
     public function getIntents(Request $request)
     {
         $data = $request->validate([
@@ -171,7 +172,7 @@ class OnosController extends Controller
         ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
@@ -197,7 +198,7 @@ class OnosController extends Controller
         ]);
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://'.$data['ip'].':8181/onos/v1/',
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
@@ -213,4 +214,154 @@ class OnosController extends Controller
         return response()->json($flows);
     }
 
+
+    public function addIntents(Request $request)
+    {
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+            'macO' => 'required',
+            'macS' => 'required',
+        ]);
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request('POST', 'intents',
+            ['auth' =>
+                [
+                    $data['username'],
+                    $data['password']
+                ],
+                'body' =>
+                    '{
+                         "type": "HostToHostIntent",
+                         "appId": "org.onosproject.ovsdb",
+                         "priority": 55,
+                         "one": "'.$request->macO.'/-1",
+                         "two": "'.$request->macS.'/-1"
+                    }'
+            ]
+
+        );
+
+        $intents = json_decode($response->getStatusCode());
+        return response()->json($intents);
+    }
+
+    public function deleteIntent(Request $request)
+    {
+
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+            'key' => 'required',
+            'appId' => 'required',
+        ]);
+
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request('DELETE', 'intents/'.$data['appId'].'/'.$data['key'],
+            ['auth' =>
+                [
+                    $data['username'],
+                    $data['password']
+                ]
+            ]
+
+        );
+
+        $intents = json_decode($response->getStatusCode());
+        return response()->json($intents);
+    }
+
+    public function getApplications(Request $request)
+    {
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request('GET', 'applications',
+            ['auth' =>
+                [
+                    $data['username'],
+                    $data['password']
+                ]
+            ]
+        );
+        $flows = json_decode($response->getBody()->getContents());
+        return response()->json($flows);
+    }
+
+    public function activeApp(Request $request)
+    {
+
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+            'appName' => 'required',
+        ]);
+
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request('POST', 'applications/' . $data['appName'] . '/active',
+            ['auth' =>
+                [
+                    $data['username'],
+                    $data['password']
+                ]
+            ]
+
+        );
+        $applications = json_decode($response->getStatusCode());
+        return response()->json($applications);
+    }
+
+    public function deactivateApp(Request $request)
+    {
+
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+            'appName' => 'required',
+        ]);
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request('DELETE', 'applications/' . $data['appName'] . '/active',
+            ['auth' =>
+                [
+                    $data['username'],
+                    $data['password']
+                ]
+            ]
+
+        );
+        $applications = json_decode($response->getStatusCode());
+        return response()->json($applications);
+    }
 }

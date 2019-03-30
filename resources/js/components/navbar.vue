@@ -29,8 +29,12 @@
                         <router-link class="nav-link" to="/intents">Intents</router-link>
                     </b-navbar-nav>
                     <b-navbar-nav>
-                        <router-link class="nav-link" to="/flows/create">Create Flow</router-link>
+                        <router-link class="nav-link" to="/applications">Applications</router-link>
                     </b-navbar-nav>
+                    <b-navbar-nav>
+                        <router-link class="nav-link" to="/statistics">Statistics</router-link>
+                    </b-navbar-nav>
+
                     <!-- Right aligned nav items -->
 
                 </b-collapse>

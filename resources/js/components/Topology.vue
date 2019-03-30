@@ -24,7 +24,7 @@
                     <b-col md="6">
                         <b-card-img src="imagens/switch.png" class="rounded-0  w-50"/>
                         <b-card-body title="Switch's">
-                            <b-card-text>
+                            <b-card-text >
                                 {{topo.devices}}
                             </b-card-text>
                         </b-card-body>
