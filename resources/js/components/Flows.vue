@@ -14,7 +14,11 @@
 
             <b-row>
 
-                <b-table striped hover :items="flows" :fields="fields" v-if="flows!=null"/>
+                <b-table striped hover :items="flows" :fields="fields" v-if="flows!=null">
+                    <template slot="actions" slot-scope="row">
+                    <b-button variant="danger" v-on:click.prevent="deleteFlow(row.item.id, row.item.deviceId)">Delete</b-button>
+                    </template>
+                </b-table>
                 <h4 class="mx-auto" v-if="flows==''">No Flows currently available</h4>
 
             </b-row>
@@ -64,6 +68,9 @@
                         label: 'State',
                         sortable: false
                     },
+                    actions : {
+                        lable:'Actions'
+                    }
 
                 },
 
@@ -72,7 +79,7 @@
         },
         methods: {
 
-            showIntents() {
+            showFlows() {
                 let user = { ip: this.$store.state.ip,
                         username: this.$store.state.username,
                         password: this.$store.state.password};
@@ -89,9 +96,30 @@
                         this.flows = '';
                     });
             },
+            deleteFlow (flowId, deviceId){
+
+                let user = { ip: this.$store.state.ip,
+                    username: this.$store.state.username,
+                    password: this.$store.state.password,
+                    flowId : flowId,
+                    deviceId: deviceId
+
+                };
+                axios
+                    .post("api/flows/delete",user)
+                    .then(response => {
+                        this.$toasted.success("Flows deleted", {duration: 2000, position: 'top-center', theme: 'bubble'});
+                        this.showFlows();
+
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        console.log(error.response.data.message);
+                    });
+            }
         },
         mounted() {
-            this.showIntents();
+            this.showFlows();
         }
     }
 

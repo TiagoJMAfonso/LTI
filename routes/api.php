@@ -27,6 +27,7 @@ Route::post('intents', 'OnosController@getIntents');
 Route::post('intents/add', 'OnosController@addIntents');
 Route::post('intents/delete', 'OnosController@deleteIntent');
 Route::post('flows', 'OnosController@getFlows');
+Route::post('flows/delete', 'OnosController@deleteFlows');
 Route::post('applications', 'OnosController@getApplications');
 Route::post('applications/active', 'OnosController@activeApp');
 Route::post('applications/deactivate', 'OnosController@deactivateApp');
