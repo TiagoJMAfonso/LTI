@@ -32,6 +32,7 @@ const intents = Vue.component('intents', require('./components/Intents.vue').def
 const flows = Vue.component('flows', require('./components/Flows.vue').default);
 const applications = Vue.component('flows', require('./components/Applications.vue').default);
 const statistics = Vue.component('statistics', require('./components/Statistics.vue').default);
+const trafficmanager = Vue.component('trafficmanager', require('./components/TrafficManager.vue').default);
 
 
 
@@ -44,6 +45,7 @@ const routes = [
     { path: '/flows', component: flows, name: 'flows' },
     { path: '/applications', component: applications, name: 'applications' },
     { path: '/statistics', component: statistics, name: 'statistics' },
+    { path: '/trafficmanager', component: trafficmanager, name: 'trafficmanager' },
     { path: '/', component: welcome, name: 'welcome' },
 ]
 

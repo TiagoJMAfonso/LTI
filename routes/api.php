@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('devices', 'OnosController@devices');
 Route::post('devices/id', 'OnosController@getDevicesById');
+Route::post('devices/ports', 'OnosController@getDevicePorts');
 Route::post('links', 'OnosController@getLinks');
 Route::post('hosts', 'OnosController@getHosts');
 Route::post('topology', 'OnosController@getTopology');
@@ -32,3 +33,4 @@ Route::post('applications', 'OnosController@getApplications');
 Route::post('applications/active', 'OnosController@activeApp');
 Route::post('applications/deactivate', 'OnosController@deactivateApp');
 Route::post('statistics', 'OnosController@getStatByDevice');
+Route::post('qos', 'OnosController@createQosFlow');

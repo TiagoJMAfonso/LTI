@@ -434,4 +434,127 @@ class OnosController extends Controller
 
         return response()->json([array_keys((array)$stats->statistics[0]->ports[0]),(object)array_values((array)$stats->statistics[0]->ports[0])]);
     }
+
+
+    public function createQosFlow(Request $request)
+    {
+
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+            'deviceId' => 'required',
+            'priority' => 'required|integer',
+            'portSW' => 'required|integer',
+        ]);
+        if($request->port!=null){
+            $dadosIp = $request->port;
+        } else {
+            $dadosIp=$request->portRadio;
+        }
+
+
+        /*  $aux ='';
+
+          for($i=0;$i <count($data['ports']);$i++){
+
+              $aux.= '{"type":"TCP_DST","tcpPort" : '.$data['ports'][$i].'},';
+
+          }
+  */
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request('POST', 'flows/'.$data['deviceId'],
+            ['auth' =>
+                [
+                    $data['username'],
+                    $data['password']
+                ],
+                'body' =>
+                        '{
+                            "priority": '.$data['priority'].',
+                            "timeout": 0,
+                            "isPermanent": true,
+                             "deviceId": "'.$data['deviceId'].'",
+                             "appId": "org.onosproject.FirewallFlows",
+                            "treatment": {
+                                "instructions": 
+                                [
+                                     {
+                                        "type": "OUTPUT",
+                                        "port": '.$data['portSW'].'
+                                      }
+                                ]
+                          },
+                          "selector": {
+                            "criteria": [
+                              {
+                                "type": "ETH_TYPE",
+                                "ethType": "0x0800"
+                              },
+                              {
+                                "type":"IP_PROTO",
+                                "protocol": 6
+                              },
+                               {
+                                 "type": "TCP_DST",
+                                 "tcpPort": '.$dadosIp.'
+                                }
+                            
+                            ]
+                          }
+                        }'
+            ]
+
+        );
+
+        $intents = json_decode($response->getStatusCode());
+        return response()->json($intents);
+    }
+
+
+
+    public function getDevicePorts(Request $request)
+    {
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+            'deviceId' => 'required',
+
+        ]);
+
+
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request('GET', 'devices/'.$data['deviceId'].'/ports',
+            ['auth' =>
+                [
+                    $data['username'],
+                    $data['password']
+                ]
+            ]
+        );
+
+        $portsSW = json_decode($response->getBody()->getContents());
+        $aux = array();
+        for($i=1;$i<count($portsSW->ports);$i++){
+
+            array_push($aux,$portsSW->ports[$i]->port);
+
+        }
+
+
+        return response()->json($aux);
+    }
+
+
 }

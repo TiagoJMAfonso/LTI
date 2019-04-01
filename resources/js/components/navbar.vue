@@ -32,6 +32,9 @@
                         <router-link class="nav-link" to="/applications">Applications</router-link>
                     </b-navbar-nav>
                     <b-navbar-nav>
+                        <router-link class="nav-link" to="/trafficmanager">Traffic Manager</router-link>
+                    </b-navbar-nav>
+                    <b-navbar-nav>
                         <router-link class="nav-link" to="/statistics">Statistics</router-link>
                     </b-navbar-nav>
 
