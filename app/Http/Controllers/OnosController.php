@@ -432,7 +432,7 @@ class OnosController extends Controller
 
 
 
-        return response()->json([array_keys((array)$stats->statistics[0]->ports[0]),(object)array_values((array)$stats->statistics[0]->ports[0])]);
+        return response()->json([array_keys((array)$stats->statistics[0]->ports[0]),array_values((array)$stats->statistics[0]->ports[0])]);
     }
 
 
