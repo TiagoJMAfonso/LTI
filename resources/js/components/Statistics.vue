@@ -15,8 +15,8 @@
 
         <line-chart
                 v-if="loaded"
-                :chartdata="chartdata"
-                :options="options"/>
+                :chartdata="chartData"
+               />
     </div>
 </template>
 <script>
@@ -32,7 +32,7 @@
                 ],
                 size: 50,
                 loaded: false,
-                chartdata: null,
+                chartData: null,
 
             };
         },
@@ -74,8 +74,20 @@
                     axios
                         .post("api/statistics", user)
                         .then(response => {
-                            console.log(response.data);
-                            this.chartData = response.data[0];
+                            
+                            let labels = response.data[0];
+                            let dados = response.data[1];
+                            console.log(labels,dados);
+                            this.chartData = {
+                              labels: labels,
+                              datasets: [
+                                {
+                                  label: 'Data One',
+                                  backgroundColor: '#f87979',
+                                  data: dados
+                                }
+                              ]
+                            };
                             this.loaded = true;
                         })
                         .catch(error => {
