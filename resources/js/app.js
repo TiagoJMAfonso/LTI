@@ -8,6 +8,8 @@ import VueRouter from 'vue-router'
 import Toasted from 'vue-toasted'
 import { VueSpinners } from '@saeris/vue-spinners'
 import store from './vuex.js'
+import VueCharts from 'vue-chartjs'
+import { Bar, Line } from 'vue-chartjs'
 
 
 

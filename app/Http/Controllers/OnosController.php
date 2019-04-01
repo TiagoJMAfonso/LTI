@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
+use PhpParser\Node\Expr\Cast\Object_;
 
 
 class OnosController extends Controller
@@ -394,5 +395,43 @@ class OnosController extends Controller
 
         $flows = json_decode($response->getStatusCode());
         return response()->json($flows);
+    }
+
+    public function getStatByDevice(Request $request)
+    {
+
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+            'selected' => 'required',
+        ]);
+
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request('GET', 'statistics/ports/'.$data['selected'],
+            ['auth' =>
+                [
+                    $data['username'],
+                    $data['password']
+                ]
+            ]
+
+        );
+
+        $stats = json_decode($response->getBody()->getContents());
+
+
+
+       // dd(array_values((array)$stats->statistics[0]->ports[0]));//values
+       // dd(array_keys((array)$stats->statistics[0]->ports[0]));//optios
+
+
+
+        return response()->json([array_keys((array)$stats->statistics[0]->ports[0]),(object)array_values((array)$stats->statistics[0]->ports[0])]);
     }
 }

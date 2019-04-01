@@ -17,7 +17,7 @@
                 <b-table striped hover :items="applications" :fields="fields" v-if="applications!=null">
                     <template slot="actions" slot-scope="row">
                         <b-button variant="success" v-on:click.prevent="ActiveApp(row.item.name)" v-show="row.item.state!='ACTIVE'">Activate </b-button>
-                        <b-button variant="danger" v-on:click.prevent="DeleteApp(row.item.name)" v-show="row.item.state=='ACTIVE'">Delete </b-button>
+                        <b-button variant="danger" v-on:click.prevent="DeleteApp(row.item.name)" v-show="row.item.state=='ACTIVE'">DeActivate </b-button>
                     </template>
                 </b-table>
                 <h4 class="mx-auto" v-if="applications==''">No Applications currently installed</h4>
