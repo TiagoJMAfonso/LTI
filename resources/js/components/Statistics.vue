@@ -13,18 +13,18 @@
             </template>
         </b-container>
 
-        <line-chart
+        <bar-chart
                 v-if="loaded"
-                :chartdata="chartData"
-               />
+                :chartdata="chartData">
+            </bar-chart>
     </div>
 </template>
 <script>
-    import LineChart from './Chart.vue'
+    import BarChart from './Chart.vue'
 
     export default {
-        name: 'LineChartContainer',
-        components: { LineChart },
+        name: 'BarChartContainer',
+        components: { BarChart },
         data() {
             return {
                 selected: null,
@@ -82,7 +82,7 @@
                               labels: labels,
                               datasets: [
                                 {
-                                  label: 'Data One',
+                                  label: 'Statistics',
                                   backgroundColor: '#f87979',
                                   data: dados
                                 }
