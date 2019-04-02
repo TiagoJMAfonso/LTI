@@ -33,4 +33,5 @@ Route::post('applications', 'OnosController@getApplications');
 Route::post('applications/active', 'OnosController@activeApp');
 Route::post('applications/deactivate', 'OnosController@deactivateApp');
 Route::post('statistics', 'OnosController@getStatByDevice');
+Route::post('statistics/port', 'OnosController@getStatsByPORT');
 Route::post('qos', 'OnosController@createQosFlow');

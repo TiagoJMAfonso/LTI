@@ -556,5 +556,48 @@ class OnosController extends Controller
         return response()->json($aux);
     }
 
+    public function getStatsByPORT(Request $request)
+    {
+
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+            'selected' => 'required',
+            'selected2' => 'required',
+        ]);
+
+
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request('GET', 'statistics/delta/ports/'.$data['selected'].'/'.$data['selected2'],
+            ['auth' =>
+                [
+                    $data['username'],
+                    $data['password']
+                ]
+            ]
+
+        );
+
+        $stats = json_decode($response->getBody()->getContents());
+
+       // dd($stats->statistics[0]->ports[0]);
+
+        // dd(array_values((array)$stats->statistics[0]->ports[0]));//values
+        // dd(array_keys((array)$stats->statistics[0]->ports[0]));//optios
+
+
+
+
+
+
+
+        return response()->json([array_keys((array)$stats->statistics[0]->ports[0]),array_values((array)$stats->statistics[0]->ports[0])]);
+    }
 
 }
