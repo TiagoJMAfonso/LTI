@@ -60,8 +60,8 @@
                 priority: null,
                 visible: true,
                 visibleRadio: true,
-                options:[],
-                selected3:'0'
+                options: [],
+                selected3: '0'
 
             }
         },
@@ -107,12 +107,11 @@
                     this.visibleRadio = true;
                 }
             },
-            clearRadio(){
+            clearRadio() {
                 this.selected1 = '';
             },
             createQOS(aux) {
 
-                console.log(this.selected1)
                 if (this.selected == null) {
                     this.$toasted.error("Please select a Device option", {
                         duration: 3000,
@@ -138,7 +137,7 @@
                     });
                     return;
                 }
-                if(this.port == '' && this.selected1 == ''){
+                if (this.port == '' && this.selected1 == '') {
                     this.$toasted.error("Please select a port name or introduced a port number", {
                         duration: 3000,
                         position: 'top-center',
@@ -146,10 +145,11 @@
                     });
                     return;
                 }
-                if(this.aux==1){
+                if (aux == 1) {
+
                     this.selected3 = 0;
                 }
-                if(aux==0 && this.selected3 ==0){
+                if (aux == 0 && this.selected3 == 0) {
                     this.$toasted.error("Please select a port rule to apply", {
                         duration: 3000,
                         position: 'top-center',
@@ -157,7 +157,6 @@
                     });
                     return;
                 }
-
 
 
                 let user = {
@@ -172,11 +171,41 @@
 
 
                 };
-                console.log(user);
+
                 axios
                     .post("api/qos", user)
                     .then(response => {
-                        console.log(response);
+
+                        if (this.port == "") {
+                            if (this.selected3 == 0) {
+                                this.$toasted.error("Traffic on port " + this.selected1 + " has been dennied", {
+                                    duration: 3000,
+                                    position: 'top-center',
+                                    theme: 'bubble'
+                                });
+                            } else {
+                                this.$toasted.success("Traffic on port " + this.selected1 + " has been allowed", {
+                                    duration: 3000,
+                                    position: 'top-center',
+                                    theme: 'bubble'
+                                });
+                            }
+                        } else {
+                            if (this.selected3 == 0) {
+                                this.$toasted.error("Traffic on port " + this.port + " has been dennied", {
+                                    duration: 3000,
+                                    position: 'top-center',
+                                    theme: 'bubble'
+                                });
+                            } else {
+                                this.$toasted.success("Traffic on port " + this.port + " has been allowed", {
+                                    duration: 3000,
+                                    position: 'top-center',
+                                    theme: 'bubble'
+                                });
+                            }
+                        }
+
                     })
                     .catch(error => {
                         console.log(error.response.data.message)
@@ -189,16 +218,15 @@
             this.getDevices();
         },
         watch: {
-            selected1:function () {
-                if(this.selected1 !=''){
-                    this.visibleRadio = false ;
-                }
-                else {
+            selected1: function () {
+                if (this.selected1 != '') {
+                    this.visibleRadio = false;
+                } else {
                     this.visibleRadio = true;
                 }
 
             },
-            selected: function(){
+            selected: function () {
                 let user = {
                     ip: this.$store.state.ip,
                     username: this.$store.state.username,
@@ -210,8 +238,7 @@
                 axios
                     .post("api/devices/ports", user)
                     .then(response => {
-                        console.log(response.data);
-                        this.options = response.data ;
+                        this.options = response.data;
                     })
                     .catch(error => {
                         console.log(error.response.data.message)

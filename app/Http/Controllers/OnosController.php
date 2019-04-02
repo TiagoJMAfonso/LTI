@@ -480,7 +480,7 @@ class OnosController extends Controller
                             "timeout": 0,
                             "isPermanent": true,
                              "deviceId": "'.$data['deviceId'].'",
-                             "appId": "org.onosproject.FirewallFlows",
+                             "appId": "org.onosproject.TrafficManagerFlows",
                             "treatment": {
                                 "instructions": 
                                 [
