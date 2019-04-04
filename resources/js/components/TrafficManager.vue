@@ -18,7 +18,7 @@
                         id="input-2"
                         v-model="port"
                         required
-                        placeholder="Please introduce a Port number"
+                        placeholder="Please introduce a  TCP Port number"
                         @change="verifyText()"
                         v-if="visibleRadio"
                 ></b-form-input>
@@ -28,8 +28,7 @@
                         placeholder="Please introduce a Priority number"
                 ></b-form-input>
                 <b-form-group label="Please select a port name " v-if="visible" @change="verifyRadio()">
-                    <b-form-radio v-model="selected1" name="some-radios" value="20">FTP</b-form-radio>
-                    <b-form-radio v-model="selected1" name="some-radios" value="21">TFTP</b-form-radio>
+                    <b-form-radio v-model="selected1" name="some-radios" value="21">FTP</b-form-radio>
                     <b-form-radio v-model="selected1" name="some-radios" value="22">SSH</b-form-radio>
                     <b-form-radio v-model="selected1" name="some-radios" value="23">Telnet</b-form-radio>
                     <b-form-radio v-model="selected1" name="some-radios" value="25">SMTP</b-form-radio>

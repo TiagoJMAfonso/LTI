@@ -78,7 +78,7 @@
                     },
                     state: {
                         label: 'State',
-                        sortable: false
+                        sortable: true
                     },
                     actions: {
                         lable: 'Actions'

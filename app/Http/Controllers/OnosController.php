@@ -10,7 +10,7 @@ use PhpParser\Node\Expr\Cast\Object_;
 
 class OnosController extends Controller
 {
-    // $client = '';  
+    // $client = '';
     // $auth = '';
 
     // public function login(Request $request)
@@ -21,7 +21,7 @@ class OnosController extends Controller
     //     'base_uri' => '$request->uri',
     //     // You can set any number of default request options.
     //     'timeout' => 2.0,
-    //     ]);  
+    //     ]);
     //     $auth = ['auth' =>
     //             [
     //                 '$request->username',
@@ -48,8 +48,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('GET', 'devices',
-            ['auth' =>
+        $response = $client->request(
+            'GET',
+            'devices',
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -76,8 +79,11 @@ class OnosController extends Controller
             'timeout' => 2.0,
         ]);
 
-        $response = $client->request('GET', 'devices/' . $data['deviceId'] . '/ports',
-            ['auth' =>
+        $response = $client->request(
+            'GET',
+            'devices/' . $data['deviceId'] . '/ports',
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -102,8 +108,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('GET', 'links',
-            ['auth' =>
+        $response = $client->request(
+            'GET',
+            'links',
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -127,8 +136,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('GET', 'hosts',
-            ['auth' =>
+        $response = $client->request(
+            'GET',
+            'hosts',
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -152,8 +164,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('GET', 'system',
-            ['auth' =>
+        $response = $client->request(
+            'GET',
+            'system',
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -177,8 +192,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('GET', 'intents',
-            ['auth' =>
+        $response = $client->request(
+            'GET',
+            'intents',
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -203,8 +221,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('GET', 'flows',
-            ['auth' =>
+        $response = $client->request(
+            'GET',
+            'flows',
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -231,19 +252,22 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('POST', 'intents',
-            ['auth' =>
+        $response = $client->request(
+            'POST',
+            'intents',
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
                 ],
                 'body' =>
-                    '{
+                '{
                          "type": "HostToHostIntent",
                          "appId": "org.onosproject.ovsdb",
                          "priority": 55,
-                         "one": "'.$request->macO.'/-1",
-                         "two": "'.$request->macS.'/-1"
+                         "one": "' . $request->macO . '/-1",
+                         "two": "' . $request->macS . '/-1"
                     }'
             ]
 
@@ -270,8 +294,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('DELETE', 'intents/'.$data['appId'].'/'.$data['key'],
-            ['auth' =>
+        $response = $client->request(
+            'DELETE',
+            'intents/' . $data['appId'] . '/' . $data['key'],
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -297,8 +324,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('GET', 'applications',
-            ['auth' =>
+        $response = $client->request(
+            'GET',
+            'applications',
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -325,8 +355,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('POST', 'applications/' . $data['appName'] . '/active',
-            ['auth' =>
+        $response = $client->request(
+            'POST',
+            'applications/' . $data['appName'] . '/active',
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -353,8 +386,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('DELETE', 'applications/' . $data['appName'] . '/active',
-            ['auth' =>
+        $response = $client->request(
+            'DELETE',
+            'applications/' . $data['appName'] . '/active',
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -383,8 +419,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('DELETE', 'flows/'.$data['deviceId'].'/'.$data['flowId'],
-            ['auth' =>
+        $response = $client->request(
+            'DELETE',
+            'flows/' . $data['deviceId'] . '/' . $data['flowId'],
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -413,8 +452,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('GET', 'statistics/ports/'.$data['selected'],
-            ['auth' =>
+        $response = $client->request(
+            'GET',
+            'statistics/ports/' . $data['selected'],
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -427,12 +469,12 @@ class OnosController extends Controller
 
 
 
-       // dd(array_values((array)$stats->statistics[0]->ports[0]));//values
-       // dd(array_keys((array)$stats->statistics[0]->ports[0]));//optios
+        // dd(array_values((array)$stats->statistics[0]->ports[0]));//values
+        // dd(array_keys((array)$stats->statistics[0]->ports[0]));//optios
 
 
 
-        return response()->json([array_keys((array)$stats->statistics[0]->ports[0]),array_values((array)$stats->statistics[0]->ports[0])]);
+        return response()->json([array_keys((array)$stats->statistics[0]->ports[0]), array_values((array)$stats->statistics[0]->ports[0])]);
     }
 
 
@@ -447,10 +489,10 @@ class OnosController extends Controller
             'priority' => 'required|integer',
             'portSW' => 'required|integer',
         ]);
-        if($request->port!=null){
+        if ($request->port != null) {
             $dadosIp = $request->port;
         } else {
-            $dadosIp=$request->portRadio;
+            $dadosIp = $request->portRadio;
         }
 
 
@@ -468,25 +510,28 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('POST', 'flows/'.$data['deviceId'],
-            ['auth' =>
+        $response = $client->request(
+            'POST',
+            'flows/' . $data['deviceId'],
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
                 ],
                 'body' =>
-                        '{
-                            "priority": '.$data['priority'].',
+                '{
+                            "priority": ' . $data['priority'] . ',
                             "timeout": 0,
                             "isPermanent": true,
-                             "deviceId": "'.$data['deviceId'].'",
+                             "deviceId": "' . $data['deviceId'] . '",
                              "appId": "org.onosproject.TrafficManagerFlows",
                             "treatment": {
-                                "instructions": 
+                                "instructions":
                                 [
                                      {
                                         "type": "OUTPUT",
-                                        "port": '.$data['portSW'].'
+                                        "port": ' . $data['portSW'] . '
                                       }
                                 ]
                           },
@@ -502,9 +547,9 @@ class OnosController extends Controller
                               },
                                {
                                  "type": "TCP_DST",
-                                 "tcpPort": '.$dadosIp.'
+                                 "tcpPort": ' . $dadosIp . '
                                 }
-                            
+
                             ]
                           }
                         }'
@@ -535,8 +580,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('GET', 'devices/'.$data['deviceId'].'/ports',
-            ['auth' =>
+        $response = $client->request(
+            'GET',
+            'devices/' . $data['deviceId'] . '/ports',
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -546,10 +594,9 @@ class OnosController extends Controller
 
         $portsSW = json_decode($response->getBody()->getContents());
         $aux = array();
-        for($i=1;$i<count($portsSW->ports);$i++){
+        for ($i = 1; $i < count($portsSW->ports); $i++) {
 
-            array_push($aux,$portsSW->ports[$i]->port);
-
+            array_push($aux, $portsSW->ports[$i]->port);
         }
 
 
@@ -574,8 +621,11 @@ class OnosController extends Controller
             // You can set any number of default request options.
             'timeout' => 2.0,
         ]);
-        $response = $client->request('GET', 'statistics/delta/ports/'.$data['selected'].'/'.$data['selected2'],
-            ['auth' =>
+        $response = $client->request(
+            'GET',
+            'statistics/delta/ports/' . $data['selected'] . '/' . $data['selected2'],
+            [
+                'auth' =>
                 [
                     $data['username'],
                     $data['password']
@@ -586,7 +636,7 @@ class OnosController extends Controller
 
         $stats = json_decode($response->getBody()->getContents());
 
-       // dd($stats->statistics[0]->ports[0]);
+        // dd($stats->statistics[0]->ports[0]);
 
         // dd(array_values((array)$stats->statistics[0]->ports[0]));//values
         // dd(array_keys((array)$stats->statistics[0]->ports[0]));//optios
@@ -597,7 +647,99 @@ class OnosController extends Controller
 
 
 
-        return response()->json([array_keys((array)$stats->statistics[0]->ports[0]),array_values((array)$stats->statistics[0]->ports[0])]);
+        return response()->json([array_keys((array)$stats->statistics[0]->ports[0]), array_values((array)$stats->statistics[0]->ports[0])]);
     }
+    public function createQosFlow2(Request $request)
+    {
 
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+            'deviceId' => 'required',
+            'priority' => 'required|integer',
+            'port' => 'required|integer',
+            'inputPort' => 'required',
+            'outputPort' => 'required',
+            'queue' => 'required'
+        ]);
+        if ($request->port != null) {
+            $dadosIp = $request->port;
+        } else {
+            $dadosIp = $request->portRadio;
+        }
+
+
+        /*  $aux ='';
+
+          for($i=0;$i <count($data['ports']);$i++){
+
+              $aux.= '{"type":"TCP_DST","tcpPort" : '.$data['ports'][$i].'},';
+
+          }
+  */
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
+            // You can set any number of default request options.
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request(
+            'POST',
+            'flows/' . $data['deviceId'],
+            [
+                'auth' =>
+                [
+                    $data['username'],
+                    $data['password']
+                ],
+                'body' =>
+                '{
+                            "priority": ' . $data['priority'] . ',
+                            "timeout": 0,
+                            "isPermanent": true,
+                             "deviceId": "' . $data['deviceId'] . '",
+                             "appId": "org.onosproject.QoSFlows",
+                            "treatment": {
+                                "instructions":
+                                [
+                                    {
+                                        "type": "QUEUE",
+                                        "queueId": ' . $data['queue'] . '
+                                      },
+                                     {
+                                        "type": "OUTPUT",
+                                        "port": ' . $data['outputPort'] . '
+                                      }
+                                ]
+                          },
+                          "selector": {
+                            "criteria": [
+                                {
+                                    "type": "IN_PORT",
+                                    "port": ' . $data['inputPort'] . '
+                                  },
+                              {
+                                "type": "ETH_TYPE",
+                                "ethType": "0x0800"
+                              },
+                              {
+                                "type":"IP_PROTO",
+                                "protocol": 6
+                              },
+                               {
+                                 "type": "TCP_DST",
+                                 "tcpPort": ' . $dadosIp . '
+                                }
+
+                            ]
+                          }
+                        }'
+            ]
+
+        );
+
+        $intents = json_decode($response->getStatusCode());
+        return response()->json($intents);
+    }
 }
