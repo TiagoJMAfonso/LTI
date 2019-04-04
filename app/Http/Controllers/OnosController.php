@@ -649,6 +649,41 @@ class OnosController extends Controller
 
         return response()->json([array_keys((array)$stats->statistics[0]->ports[0]), array_values((array)$stats->statistics[0]->ports[0])]);
     }
+
+
+    public function getStatsByFlow(Request $request)
+    {
+
+        $data = $request->validate([
+            'ip' => 'required|ipv4',
+            'username' => 'required',
+            'password' => 'required',
+            'id' => 'required',
+            'deviceId' => 'required',
+        ]);
+
+
+        $client = new Client([
+            'base_uri' => 'http://' . $data['ip'] . ':8181/onos/v1/',
+            'timeout' => 2.0,
+        ]);
+        $response = $client->request(
+            'GET',
+            'flows/' . $data['deviceId'] . '/' . $data['id'],
+            [
+                'auth' =>
+                [
+                    $data['username'],
+                    $data['password']
+                ]
+            ]
+
+        );
+        $stats = json_decode($response->getBody()->getContents());
+        return response()->json([array_keys((array)$stats->flows[0]), array_values((array)$stats->flows[0])]);
+    }
+
+
     public function createQosFlow2(Request $request)
     {
 

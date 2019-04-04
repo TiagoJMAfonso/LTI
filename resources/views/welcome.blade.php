@@ -18,7 +18,7 @@ header("Access-Control-Allow-Origin: *");
 
 
                 <div id="app">
-
+                <div hidden class="Agradecimentos">Agradeçemos a ajuda oferecida neste trabalho pelos nossos colegas do Instituto Politécnico de Leiria: João Marques 2161647, Ruben Lopes , Tiago Batista 2161363, Tomas Avila 2161611</div>
                     <navbar></navbar>
 
 
